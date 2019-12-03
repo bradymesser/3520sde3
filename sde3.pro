@@ -14,21 +14,15 @@ data(w,[[0.0, -1.0, 1.0, -1.0], [-1.0, 0.0, -1.0, 1.0], [1.0, -1.0, 0.0, -1.0],
 [-1.0, 1.0, -1.0, 0.0]]).
 
 % ----------------Helper Functions ----------------------------
-mult(A,B,C) :- C is A * B. % Multiplies two values and stores them in C, reduces the use of is or =
-add(A,B,C) :- C is A + B. % adds two values and stores them in C, reduces the use of is or =
+mult(A,B,C) :- C is A * B. % Multiplies two values and stores them in C
+add(A,B,C) :- C is A + B. % adds two values and stores them in C
 
 head([Head | _], Head).   % Gets the head of a list, probably not needed
 
 storeAsList(A, [A]).   % Converts argument A to a list
-store(A,A).		% Used as a replacement for assingment with is or =
+store(A,A).		% Used as a replacement for assingment
 
-concatToList(A, B, [A | B]). % Concatenates two items into a list, reduces the use of is or =
-
-% helper1(_,[],[]).
-% helper1(H , [HAs | TAs], [Ho | Ro]):-
-% 	Ho is H * HAs,
-% 	helper1(H, TAs, Ro),
-% 	!.
+concatToList(A, B, [A | B]). % Concatenates two items into a list
 
 zero(V, 0.0) :- V > 0.0, !.
 zero(V, -0.0) :- V < 0.0, !.
