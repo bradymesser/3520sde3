@@ -1,8 +1,3 @@
-data(o1o1o1o2o3,[[1.0, -1.0, 1.0, -1.0],[1.0, -1.0, 1.0, -1.0],[1.0, -1.0, 1.0,
--1.0],[-1.0, -1.0, 1.0, -1.0],[-1.0, -1.0, 1.0, 1.0]]).
-data(os3,[-1.0, -1.0, 1.0, 1.0]).
-data(oi,[-1.0,-1.0]).
-data(we,[[0.0,-1.0],[-1.0,0.0]]).
 % ----------------Helper Functions ----------------------------
 mult(A,B,C) :- C is A * B. % Multiplies two values and stores them in C
 add(A,B,C) :- C is A + B. % adds two values and stores them in C
@@ -32,7 +27,8 @@ netUnit([], [], 0) :- !.
 netUnit([Hi | Ti], [Hw | Tw], Net) :-
   mult(Hi,Hw,X),
   netUnit(Ti,Tw,Z),
-  add(X,Z,Net).
+  add(X,Z,Net1),
+  convertToFloat(Net1,Net).
 
 % ------------------------------------------------------------------------------
 
