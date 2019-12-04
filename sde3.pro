@@ -1,6 +1,12 @@
+data(o1o1o1o2o3,[[1.0, -1.0, 1.0, -1.0],[1.0, -1.0, 1.0, -1.0],[1.0, -1.0, 1.0,
+-1.0],[-1.0, -1.0, 1.0, -1.0],[-1.0, -1.0, 1.0, 1.0]]).
+data(os3,[-1.0, -1.0, 1.0, 1.0]).
+data(oi,[-1.0,-1.0]).
+data(we,[[0.0,-1.0],[-1.0,0.0]]).
 % ----------------Helper Functions ----------------------------
 mult(A,B,C) :- C is A * B. % Multiplies two values and stores them in C
 add(A,B,C) :- C is A + B. % adds two values and stores them in C
+convertToFloat(A, B) :- B is float(A).
 
 head([Head | _], Head).   % Gets the head of a list, probably not needed
 
@@ -113,14 +119,16 @@ hopTrain([],_).
 % (** Returns next state vector  *) base case to terminate recursion
 nextState([Hc | Tc],[Hw | []], Alpha, Next) :-
   netUnit([Hc | Tc], Hw, A),
-  hop11Activation(A, Alpha, Hc, B),
+  hop11Activation(A, Alpha, Hc, B2),
+  convertToFloat(B2,B),
   storeAsList(B,Next),
   !.
 
 % (** Returns next state vector  *)
 nextState([Hc | Tc],[Hw | Tw], Alpha, Next) :-
   netUnit([Hc | Tc], Hw, A),
-  hop11Activation(A, Alpha, Hc, B),
+  hop11Activation(A, Alpha, Hc, B2),
+  convertToFloat(B2,B),
   nextState([Hc | Tc], Tw, Alpha, C),
   append([B], C, Next).
 % ------------------------------------------------------------------------------
